@@ -67,7 +67,7 @@ namespace Linq
                     Nombre = "Analisis y Desarrollo de Sistemas de Información",
                     Codigo = 27,
                     Area = "Sistemas",
-                    Duracion = 24
+                    Duracion = 35
                 },
 
                 new Proyecto()
