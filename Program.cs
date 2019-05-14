@@ -9,9 +9,9 @@ namespace Linq
         {
             // 
             // 
-            //Obtener el promedio de la duracion de todos los proyectos 
-            //Obtener el nombre del proyecto con mas duracion 
-            //Selecionar el nombre y area del proyecto con duracion mayor a 6 
+            // 
+            // 
+            // 
             //Verificar si hay un proyecto con una duracion superior a 24 
             //Sumar las duraciones de los proyectos cuyo codigo sea superior a 20 
             //Tomar los dos primeros proyectos cuyo codigo sea superior a 30 
@@ -20,9 +20,7 @@ namespace Linq
             Proyecto project = new Proyecto();
             project.proyectos = project.AgregarProyecto2();
             var proy = project.proyectos;
-            Console.ReadLine();
-
-
+            
             Console.WriteLine("-----------Obtener todos los proyectos cuya duración sea superior a 6 y inferior a 12-----------");
             var supinf = proy.Where(x => x.Duracion > 6 && x.Duracion < 12).ToList();
             project.Imprimir(supinf);
@@ -38,7 +36,7 @@ namespace Linq
             var proyectosmult = proy.Where(x => x.Codigo % 7 == 0).ToList();
             project.Imprimir(proyectosmult);
 
-            Console.WriteLine("-----------Agrupar los proyectos que tenga una duracion superior a 6 y inferior a 10 y los que sean mayor a 10-----------");
+            Console.WriteLine("----------Agrupar los proyectos que tenga una duracion superior a 6 y inferior a 10 y los que sean mayor a 10----------");
             var gruposProys = proy.GroupBy(x =>
             {
                 if (x.Duracion < 10)
@@ -63,6 +61,19 @@ namespace Linq
                 }
             }
             Console.WriteLine();
+
+            Console.WriteLine("-----------Obtener el promedio de la duracion de todos los proyectos-----------");
+            var avgDura = proy.Average(x => x.Duracion);
+            Console.WriteLine($"El promedio de la duracion de todos los proyectos es de: {avgDura}");
+
+            Console.WriteLine("-----------Obtener el nombre del proyecto con mas duracion-----------");
+            var maxdura = proy.Max(x => x.Duracion);
+            var nom = (from p in proy
+                      where (p.Duracion == maxdura)
+                      select p.Nombre).FirstOrDefault();
+            Console.WriteLine($"El proyecto con mas duracion es: {nom} con una duracion de {maxdura}");
+
+            Console.WriteLine("-----------Selecionar el nombre y area del proyecto con duracion mayor a 6-----------");
             Console.ReadLine();
         }
     }
